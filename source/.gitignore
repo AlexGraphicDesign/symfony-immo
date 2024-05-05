@@ -18,3 +18,9 @@
 /.php-cs-fixer.php
 /.php-cs-fixer.cache
 ###< friendsofphp/php-cs-fixer ###
+
+/vendor
+/var/cache
+/var/log
+
+/node_modules
