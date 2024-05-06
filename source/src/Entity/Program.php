@@ -22,6 +22,9 @@ final class Program extends BaseEntity
     private ?string $description = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $featuredImage = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $content = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -98,6 +101,18 @@ final class Program extends BaseEntity
     public function setDescription(?string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getfeaturedImage(): ?string
+    {
+        return $this->featuredImage;
+    }
+
+    public function setFeaturedImage(?string $featuredImage): static
+    {
+        $this->featuredImage = $featuredImage;
 
         return $this;
     }
