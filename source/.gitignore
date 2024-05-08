@@ -24,3 +24,15 @@
 /var/log/*
 
 /node_modules
+
+/assets/dist/*
+!controllers.json
+
+# Useless Files
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

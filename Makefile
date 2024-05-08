@@ -16,13 +16,19 @@ node: ## Connect to the Node container
 
 init-project: generate-env build download-symfony success-message
 
-install: generate-env build up composer
+install: generate-env build up composer yarn
 
 composer: ## Install Composer dependencies
 	docker-compose exec --user www-data php bash -c 'composer install'
 
 composer-u: ## Update Composer dependencies
 	docker-compose exec --user www-data php bash -c 'composer update'
+
+yarn: ## Install Yarn dependencies
+	docker-compose exec node bash -c 'yarn install'
+
+compile-assets: ## Compile assets
+	docker-compose exec node bash -c 'yarn dev'
 
 download-symfony: ## Download Symfony
 	docker-compose exec --user www-data php bash -c 'mkdir symfony-temp && composer create-project symfony/skeleton:"7.0.*" symfony-temp && mv symfony-temp/* . && rm -rf symfony-temp'
