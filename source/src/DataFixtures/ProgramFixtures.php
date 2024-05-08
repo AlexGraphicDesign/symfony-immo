@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Program;
+use App\Enum\Program\Status;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -32,7 +33,7 @@ class ProgramFixtures extends Fixture
                 ->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-2 years', '-1 year')))
                 ->setUpdatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-1 year', 'now')))
                 ->setUuid($faker->uuid)
-                ->setStatus($faker->randomElement(['draft', 'published', 'archived']));
+                ->setStatus($faker->randomElement([Status::DRAFT, Status::PUBLISHED, Status::ARCHIVED]));
 
             $manager->persist($program);
         }

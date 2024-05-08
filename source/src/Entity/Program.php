@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\ProgramRepository;
+use App\Enum\Program\Status;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ProgramRepository;
 
 #[ORM\Entity(repositoryClass: ProgramRepository::class)]
 final class Program extends BaseEntity
@@ -55,7 +56,7 @@ final class Program extends BaseEntity
     private ?bool $indexable = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $status = null;
+    private ?Status $status = null;
 
     public function getName(): ?string
     {
@@ -237,12 +238,12 @@ final class Program extends BaseEntity
         return $this;
     }
 
-    public function getStatus(): ?string
+    public function getStatus(): ?Status
     {
         return $this->status;
     }
 
-    public function setStatus(string $status): static
+    public function setStatus(Status $status): static
     {
         $this->status = $status;
 
