@@ -16,7 +16,7 @@ node: ## Connect to the Node container
 
 init-project: generate-env build download-symfony success-message
 
-install: generate-env build up composer yarn
+install: generate-env build up composer yarn compile-assets
 
 composer: ## Install Composer dependencies
 	docker-compose exec --user www-data php bash -c 'composer install'
