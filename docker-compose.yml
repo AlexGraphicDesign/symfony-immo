@@ -34,8 +34,11 @@ services:
         - backend
       volumes:
         - ./source:/srv/app
+      ports:
+        - '3000:3000'
       labels:
-        - traefik.port=8080
+        - traefik.frontend.rule=Host:symfony-immo-front.dev.localhost
+        - traefik.port=3000
 
 networks:
   backend:

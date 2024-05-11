@@ -12,6 +12,11 @@
 /.php-cs-fixer.cache
 ###< friendsofphp/php-cs-fixer ###
 
+###> pentatrion/vite-bundle ###
+/node_modules/
+/public/build/
+###< pentatrion/vite-bundle ###
+
 /vendor/*
 /var/cache/*
 /var/log/*
@@ -26,8 +31,3 @@
 *.njsproj
 *.sln
 *.sw?
-
-###> pentatrion/vite-bundle ###
-/node_modules/
-/public/build/
-###< pentatrion/vite-bundle ###

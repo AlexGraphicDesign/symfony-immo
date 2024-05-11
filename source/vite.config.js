@@ -2,33 +2,43 @@ import { defineConfig } from "vite";
 import symfonyPlugin from "vite-plugin-symfony";
 import { resolve } from "path";
 
-/* if you're using React */
-// import react from '@vitejs/plugin-react';
-
 export default defineConfig({
     plugins: [
-        /* react(), // if you're using React */
-        symfonyPlugin({
-            viteDevServerHostname: 'symfony-immo.dev.localhost',
-            // originOverride: 'http://symfony-immo.dev.localhost'
-        }),
+        symfonyPlugin(),
     ],
     server: {
+        clientPort: 3000,
         host: true,
-        port: 8080,
+        port: 3000,
+        https: false,
+
+        hmr: {
+            clientPort: 3000,
+            host: 'symfony-immo-front.dev.localhost',
+            port: 3000,
+        },
     },
-    base: "/app/assets/",
+    base: "/app/",
     emitManifest: true,
     build: {
+        manifest: true,
+        emptyOutDir: true,
+        outDir: "./public/build",
+        publicDir: "./public/assets",
         rollupOptions: {
             output: {
-                manualChunks: undefined
+                manualChunks: undefined,
+                sourcemap: true
             },
             input: {
-                app: resolve(__dirname, "/app.js"),
+                app: "./assets/app.js",
             },
         },
-        manifest: true,
-        outDir: '../app/public/assets/',
     },
+
+    resolve: {
+        alias: {
+          '@app': resolve(__dirname, "/assets"),
+        },
+      },
 });
