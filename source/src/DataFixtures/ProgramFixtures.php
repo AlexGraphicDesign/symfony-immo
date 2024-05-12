@@ -19,7 +19,7 @@ class ProgramFixtures extends Fixture
                 ->setTitle($faker->words(6, true))
                 ->setSlug($faker->slug)
                 ->setDescription($faker->text(60))
-                ->setFeaturedImage($faker->imageUrl(360, 360, 'animals', true, 'cats'))
+                ->setFeaturedImage($faker->imageUrl(400, 250, 'animals', true, 'cats'))
                 ->setExcerpt($faker->text(60))
                 ->setContent($faker->paragraphs(3, true))
                 ->setConstructionStart(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-6 months', 'now')))

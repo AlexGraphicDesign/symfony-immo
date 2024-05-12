@@ -4,14 +4,20 @@
 
 {% block body %}
 
-<div class="container">
-    {% for program in programs %}
-    <div style="margin-bottom: 10px;">
-        <h1>{{ program.title }}</h1>
-        <img src="{{ program.featuredImage }}" alt="{{ program.name }}">
-        <p>{{ program.name }}</p>
-        <p>{{ program.description }}</p>
+<section class="py-2">
+    <div class="container">
+        <div class="grid sm:grid-cols-none md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {% for program in programs %}
+            <article class="flex flex-col flex-shrink-0 bg-white shadow-lg rounded-3xl overflow-hidden tracking-wide">
+                <img class="w-full h-auto rounded-3xl" loading="lazy" src="{{ program.featuredImage }}" alt="{{ program.name }}">
+                <div class="mt-1 p-4 text-base leading-normal space-y-4 sm:leading-7">
+                    <h2 class="font-bold mb-2">{{ program.title }}</h2>
+                    <p class="text-gray-800">{{ program.name }}</p>
+                    <p class="text-gray-800">{{ program.description }}</p>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
     </div>
-    {% endfor %}
-</div>
+</section>
 {% endblock %}
