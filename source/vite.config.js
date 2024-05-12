@@ -21,14 +21,15 @@ export default defineConfig({
     base: "/app/",
     emitManifest: true,
     build: {
+        minify: true,
         manifest: true,
         emptyOutDir: true,
         outDir: "./public/build",
         publicDir: "./public/assets",
+        sourcemap: true,
         rollupOptions: {
             output: {
                 manualChunks: undefined,
-                sourcemap: true
             },
             input: {
                 app: "./assets/app.js",
