@@ -1,43 +1,21 @@
 <?php
 
-namespace App\Entity;
+declare(strict_types=1);
+
+namespace App\Entity\Utils;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\MappedSuperclass]
-abstract class BaseEntity
+#[ORM\HasLifecycleCallbacks]
+trait Timestamp
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
-
-    #[ORM\Column(type: Types::GUID)]
-    private ?string $uuid = null;
-
-    #[ORM\Column]
+    #[ORM\Column(type:Types::DATETIME_IMMUTABLE)]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(type:Types::DATETIME_IMMUTABLE, nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getUuid(): ?string
-    {
-        return $this->uuid;
-    }
-
-    public function setUuid(string $uuid): static
-    {
-        $this->uuid = $uuid;
-
-        return $this;
-    }
 
     public function getCreatedAt(): ?\DateTimeImmutable
     {
