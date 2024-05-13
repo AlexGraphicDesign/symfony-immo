@@ -1,15 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Enum\Program\Status;
 use Doctrine\DBAL\Types\Types;
+use App\Entity\Utils\Timestamp;
+use App\Entity\Utils\BaseEntity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProgramRepository;
 
 #[ORM\Entity(repositoryClass: ProgramRepository::class)]
 final class Program extends BaseEntity
 {
+    use Timestamp;
+    
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
