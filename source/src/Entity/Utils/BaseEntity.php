@@ -6,7 +6,7 @@ namespace App\Entity\Utils;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Uid\UuidV7;
 #[ORM\MappedSuperclass]
 abstract class BaseEntity
 {
@@ -15,8 +15,7 @@ abstract class BaseEntity
     #[ORM\Column(type: Types::INTEGER)]
     private ?int $id = null;
 
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: Types::GUID, unique: true, length: 32)]
+    #[ORM\Column(type: Types::STRING, unique: true, length: 32)]
     private ?string $uuid = null;
 
     public function getId(): ?int
@@ -24,14 +23,12 @@ abstract class BaseEntity
         return $this->id;
     }
 
-    public function getUuid(): ?string
+    #[ORM\PrePersist]
+    public function getUuid(): static
     {
-        return $this->uuid;
-    }
-
-    public function setUuid(string $uuid): static
-    {
-        $this->uuid = $uuid;
+        if (!$this->uuid) {
+            $this->uuid = (new UuidV7())->toBase32();
+        }
 
         return $this;
     }

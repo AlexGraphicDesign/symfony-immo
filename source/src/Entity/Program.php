@@ -28,7 +28,7 @@ final class Program extends BaseEntity
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[ORM\Column(type: Types::STRING, nullable: true)]
     private ?string $featuredImage = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -46,25 +46,25 @@ final class Program extends BaseEntity
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $actability = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     private ?string $address = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: Types::FLOAT, nullable: true)]
     private ?float $latitude = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: Types::FLOAT, nullable: true)]
     private ?float $longitude = null;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $delivery = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: Types::BOOLEAN)]
     private ?bool $indexable = null;
 
     #[ORM\Column(length: 255)]
     private ?Status $status = null;
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -76,7 +76,7 @@ final class Program extends BaseEntity
         return $this;
     }
 
-    public function getTitle(): ?string
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -88,7 +88,7 @@ final class Program extends BaseEntity
         return $this;
     }
 
-    public function getSlug(): ?string
+    public function getSlug(): string
     {
         return $this->slug;
     }
