@@ -21,7 +21,7 @@
 /var/cache/*
 /var/log/*
 
-/node_modules/
+!.env
 
 # Useless Files
 .idea

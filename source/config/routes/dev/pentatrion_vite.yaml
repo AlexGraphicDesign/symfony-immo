@@ -1,4 +1,4 @@
 _pentatrion_vite:
-    prefix: /public
-    resource: "@PentatrionViteBundle/Resources/config/routing.yaml"
+    path: public
+    prefix: /build
  
