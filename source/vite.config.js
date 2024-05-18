@@ -1,10 +1,14 @@
 import { defineConfig } from "vite";
 import symfonyPlugin from "vite-plugin-symfony";
+import VueDevTools from 'vite-plugin-vue-devtools'
 import { resolve } from "path";
+import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
     plugins: [
         symfonyPlugin(),
+        VueDevTools(),
+        vue()
     ],
     server: {
         clientPort: 3000,
@@ -24,22 +28,23 @@ export default defineConfig({
         minify: true,
         manifest: true,
         emptyOutDir: true,
-        outDir: "./public/build",
-        publicDir: "./public/assets",
-        sourcemap: true,
+        publicDir: "./public",
         rollupOptions: {
             output: {
                 manualChunks: undefined,
+                sourcemap: true,
             },
             input: {
-                app: "./assets/app.js",
+                front: "./assets/front/app.js",
+                back: "./assets/back/main.ts",
             },
         },
     },
 
     resolve: {
         alias: {
-          '@app': resolve(__dirname, "/assets"),
+          '@front': resolve(__dirname, "./assets/front"),
+          '@back': resolve(__dirname, "./assets/back"),
         },
       },
 });
