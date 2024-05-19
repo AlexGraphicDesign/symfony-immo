@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity\Utils;
 
+use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,6 +26,16 @@ trait Timestamp
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function initiateCreatedAt(): static
+    {
+        if (!$this->createdAt) {
+            $this->createdAt = new DateTimeImmutable();
+        }
 
         return $this;
     }

@@ -10,6 +10,7 @@ use App\Entity\Utils\Timestamp;
 use App\Entity\Utils\BaseEntity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProgramRepository;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: ProgramRepository::class)]
 final class Program extends BaseEntity
@@ -17,51 +18,59 @@ final class Program extends BaseEntity
     use Timestamp;
     
     #[ORM\Column(length: 255)]
+    #[Groups(['program'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['program'])]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['program'])]
     private ?string $slug = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups(['program'])]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true)]
+    #[Groups(['program'])]
     private ?string $featuredImage = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups(['program'])]
     private ?string $content = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups(['program'])]
     private ?string $excerpt = null;
 
     #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $constructionStart = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $constructionEnd = null;
-
-    #[ORM\Column(nullable: true)]
+    #[Groups(['program'])]
     private ?\DateTimeImmutable $actability = null;
 
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
+    #[Groups(['program'])]
     private ?string $address = null;
 
     #[ORM\Column(type: Types::FLOAT, nullable: true)]
+    #[Groups(['program'])]
     private ?float $latitude = null;
 
     #[ORM\Column(type: Types::FLOAT, nullable: true)]
+    #[Groups(['program'])]
     private ?float $longitude = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $delivery = null;
+    #[ORM\OneToOne(targetEntity: ProgramDetails::class, mappedBy:'program', cascade: ['persist', 'remove'])]
+    #[Groups(['program'])]
+    private ?ProgramDetails $programDetails = null;
 
     #[ORM\Column(type: Types::BOOLEAN)]
+    #[Groups(['program'])]
     private ?bool $indexable = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['program'])]
     private ?Status $status = null;
 
     public function getName(): string
@@ -148,30 +157,6 @@ final class Program extends BaseEntity
         return $this;
     }
 
-    public function getConstructionStart(): ?\DateTimeImmutable
-    {
-        return $this->constructionStart;
-    }
-
-    public function setConstructionStart(?\DateTimeImmutable $constructionStart): static
-    {
-        $this->constructionStart = $constructionStart;
-
-        return $this;
-    }
-
-    public function getConstructionEnd(): ?\DateTimeImmutable
-    {
-        return $this->constructionEnd;
-    }
-
-    public function setConstructionEnd(?\DateTimeImmutable $constructionEnd): static
-    {
-        $this->constructionEnd = $constructionEnd;
-
-        return $this;
-    }
-
     public function getActability(): ?\DateTimeImmutable
     {
         return $this->actability;
@@ -220,14 +205,14 @@ final class Program extends BaseEntity
         return $this;
     }
 
-    public function getDelivery(): ?\DateTimeImmutable
+    public function getProgramDetails(): ?ProgramDetails
     {
-        return $this->delivery;
+        return $this->programDetails;
     }
 
-    public function setDelivery(?\DateTimeImmutable $delivery): static
+    public function setProgramDetails(ProgramDetails $programDetails): static
     {
-        $this->delivery = $delivery;
+        $this->programDetails = $programDetails;
 
         return $this;
     }
