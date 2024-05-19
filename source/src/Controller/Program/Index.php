@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class Index extends AbstractController
 {
     #[Route('/programmes-immobiliers-neufs', name: 'app_program_index')]
-    public function index(Request $request, ProgramRepository $repository): Response
+    public function __invoke(Request $request, ProgramRepository $repository): Response
     {
         $programs = $repository->findAll();
 
