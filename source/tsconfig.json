@@ -30,9 +30,14 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
+  "baseUrl": "source/assets",
+  "paths": {
+    "@/back/*": [
+      "back/*"
+    ]
+  },
   "include": [
     "assets/back/**/*.ts", 
-    "assets/back/**/*.tsx", 
     "assets/back/**/*.vue"
   ],
   "exclude": [
