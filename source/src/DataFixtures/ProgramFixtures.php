@@ -16,7 +16,6 @@ class ProgramFixtures extends Fixture
         $faker = Factory::create('fr_FR');
         for ($i = 0; $i < 20; ++$i) {
             $program = (new Program())
-                ->getUuid()
                 ->setName($faker->words(5, true))
                 ->setTitle($faker->words(6, true))
                 ->setSlug($faker->slug)
@@ -34,7 +33,6 @@ class ProgramFixtures extends Fixture
                 ->setStatus($faker->randomElement([Status::DRAFT, Status::PUBLISHED, Status::ARCHIVED]));
 
             $programDetails = (new ProgramDetails())
-                ->getUuid()
                 ->setProgram($program)
                 ->setConstructionStart(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-6 months', 'now')))
                 ->setConstructionEnd(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('now', '+6 months')))
