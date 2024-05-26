@@ -1,18 +1,13 @@
 <script setup lang="ts">
-  import { RouterLink, RouterView } from 'vue-router'
-  import Login from '@back/pages/Login.vue'
+  import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <header>
     <div class="wrapper">
-      <Login msg="Bienvenue sur le Login" />
-
-      <RouterLink to="/admin">
-        Admin
-      </RouterLink>
+      <nav>
+        <RouterLink to="/login" class="link">Login</RouterLink>
+        <RouterLink to="/admin" class="link">Admin</RouterLink>
+      </nav>
+      <RouterView />
     </div>
-  </header>
-
-<RouterView />
 </template>

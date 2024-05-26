@@ -1,11 +1,12 @@
 <script setup lang="ts">
 defineProps<{
-  msg: string
+  msg: string,
+  default: 'dashboard'
 }>()
 </script>
 
 <template>
     <div class="m-4">
-        <h1>{{ msg }}</h1>
+        <h1>Admin</h1>
     </div>
 </template>
