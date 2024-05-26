@@ -7,6 +7,7 @@ namespace App\Entity\Utils;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\UuidV7;
+
 #[ORM\MappedSuperclass]
 abstract class BaseEntity
 {

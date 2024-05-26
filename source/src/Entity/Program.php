@@ -4,30 +4,30 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Enum\Program\Status;
-use Doctrine\DBAL\Types\Types;
-use App\Entity\Utils\Timestamp;
 use App\Entity\Utils\BaseEntity;
-use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Utils\Timestamp;
+use App\Enum\Program\Status;
 use App\Repository\ProgramRepository;
+use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: ProgramRepository::class)]
 final class Program extends BaseEntity
 {
     use Timestamp;
-    
-    #[ORM\Column(length: 255)]
-    #[Groups(['program'])]
-    private ?string $name = null;
 
     #[ORM\Column(length: 255)]
     #[Groups(['program'])]
-    private ?string $title = null;
+    private string $name;
 
     #[ORM\Column(length: 255)]
     #[Groups(['program'])]
-    private ?string $slug = null;
+    private string $title;
+
+    #[ORM\Column(length: 255)]
+    #[Groups(['program'])]
+    private string $slug;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Groups(['program'])]
@@ -61,7 +61,7 @@ final class Program extends BaseEntity
     #[Groups(['program'])]
     private ?float $longitude = null;
 
-    #[ORM\OneToOne(targetEntity: ProgramDetails::class, mappedBy:'program', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(targetEntity: ProgramDetails::class, mappedBy: 'program', cascade: ['persist', 'remove'])]
     #[Groups(['program'])]
     private ?ProgramDetails $programDetails = null;
 

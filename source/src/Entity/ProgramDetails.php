@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Utils\BaseEntity;
-use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProgramDetailsRepository;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: ProgramDetailsRepository::class)]
@@ -44,7 +44,7 @@ final class ProgramDetails extends BaseEntity
         return $this;
     }
 
-    public function getUrlPromoter(): string
+    public function getUrlPromoter(): ?string
     {
         return $this->urlPromoter;
     }

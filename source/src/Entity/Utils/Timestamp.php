@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Entity\Utils;
 
-use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -12,10 +11,10 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\HasLifecycleCallbacks]
 trait Timestamp
 {
-    #[ORM\Column(type:Types::DATETIME_IMMUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(type:Types::DATETIME_IMMUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
     public function getCreatedAt(): ?\DateTimeImmutable
@@ -34,7 +33,7 @@ trait Timestamp
     public function initiateCreatedAt(): static
     {
         if (!$this->createdAt) {
-            $this->createdAt = new DateTimeImmutable();
+            $this->createdAt = new \DateTimeImmutable();
         }
 
         return $this;

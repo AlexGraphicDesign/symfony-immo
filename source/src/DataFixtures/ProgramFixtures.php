@@ -39,7 +39,7 @@ class ProgramFixtures extends Fixture
                 ->setConstructionStart(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-6 months', 'now')))
                 ->setConstructionEnd(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('now', '+6 months')))
                 ->setDelivery(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('+1 year', '+2 years')))
-                ->setUrlPromoter($faker->url); 
+                ->setUrlPromoter($faker->url);
 
             $manager->persist($program);
             $manager->persist($programDetails);
