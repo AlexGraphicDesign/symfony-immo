@@ -10,10 +10,10 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class Index extends AbstractController
 {
-    #[Route('/programmes-immobiliers-neufs', name: 'app_program_index')]
-    public function __invoke(Request $request, ProgramRepository $repository): Response
+    #[Route(path: '/programmes-immobiliers-neufs', name: 'app_program.index')]
+    public function __invoke(Request $request, ProgramRepository $programRepository): Response
     {
-        $programs = $repository->findAll();
+        $programs = $programRepository->findAll();
 
         return $this->render('program/index.html.twig', [
             'programs' => $programs,

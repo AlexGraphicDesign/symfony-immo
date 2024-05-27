@@ -7,7 +7,7 @@
     "importHelpers": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
+    "baseUrl": "source/assets",
     "module": "ESNext",
     "lib": [
       "ES2020", 
@@ -30,7 +30,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "baseUrl": "source/assets",
   "paths": {
     "@/back/*": [
       "back/*"
