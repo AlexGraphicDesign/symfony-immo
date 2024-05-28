@@ -8,6 +8,11 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "source/assets",
+    "paths": {
+      "@/back/*": [
+        "back/*"
+      ]
+    },
     "module": "ESNext",
     "lib": [
       "ES2020", 
@@ -29,11 +34,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
-  },
-  "paths": {
-    "@/back/*": [
-      "back/*"
-    ]
   },
   "include": [
     "assets/back/**/*.ts", 
