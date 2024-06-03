@@ -12,8 +12,7 @@ final class Index extends AbstractController
 {
     public function __construct(
         private readonly ProgramRepository $programRepository
-    )
-    {   
+    ) {
     }
 
     #[Route(path: '/programmes-immobiliers-neufs', name: 'app_program.index')]

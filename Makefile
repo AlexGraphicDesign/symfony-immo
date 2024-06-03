@@ -37,9 +37,9 @@ generate-env:
 	@rm -f .env
 	@echo "HOST=`hostname -I | cut -d ' ' -f1`" >> .env
 
-fix: ## Run PHP-CS-Fixer
+fix: ## Run PHP-CS-Fixer & PHP Stan
 	docker-compose exec --user www-data php bash -c 'vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --allow-risky=yes'
-	docker-compose exec php bash -c 'vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 512M'
+	docker-compose exec php bash -c 'php -dxdebug.mode=off vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 512M'
 
 success-message: ## Display success message
 	@printf "\n\n"
