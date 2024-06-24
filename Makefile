@@ -14,9 +14,12 @@ php: ## Connect to the PHP container
 node: ## Connect to the Node container
 	docker-compose exec node /bin/bash
 
+cacert:
+	cd source/var/data/ && curl -sS https://curl.se/ca/cacert.pem -o cacert.pem
+
 init-project: generate-env build download-symfony success-message
 
-install: generate-env build up composer yarn compile-assets
+install: generate-env build up cacert composer yarn db-init success-message
 
 composer: ## Install Composer dependencies
 	docker-compose exec --user www-data php bash -c 'composer install'
@@ -29,6 +32,15 @@ yarn: ## Install Yarn dependencies
 
 compile-assets: ## Compile assets
 	docker-compose exec node bash -c 'yarn dev'
+
+db-init: ## Init database
+	docker-compose exec --user www-data php bash -c 'php bin/console doctrine:database:create --if-not-exists'
+	docker-compose exec --user www-data php bash -c 'php bin/console doctrine:migrations:migrate -n --verbose'
+
+db-reset: ## Reset database
+	docker-compose exec --user www-data php bash -c 'php -dxdebug.mode=off bin/console doctrine:database:drop --force --if-exists || true'
+	docker-compose exec --user www-data php bash -c 'php -dxdebug.mode=off bin/console doctrine:database:create'
+	docker-compose exec --user www-data php bash -c 'php -dxdebug.mode=off bin/console doctrine:migrations:migrate -n'
 
 download-symfony: ## Download Symfony
 	docker-compose exec --user www-data php bash -c 'mkdir symfony-temp && composer create-project symfony/skeleton:"7.0.*" symfony-temp && mv symfony-temp/* . && rm -rf symfony-temp'
