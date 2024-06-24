@@ -1,5 +1,5 @@
 import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router';
-import Next from '@back/middlewares/Next';
+import Next from '@back/router/middlewares/Next';
 
 const middlewares = [
     Next,
